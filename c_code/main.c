@@ -203,6 +203,7 @@ int main()
     uart_puts("   l: set RGB LED\r\n");
     uart_puts("   m: memory test\r\n");
     uart_puts("   r: read clock\r\n");
+    uart_puts("   t: dummy test\r\n");
     ch = uart_getchar();
     switch (ch) {
     case 'c':
@@ -240,6 +241,9 @@ int main()
       uart_puts("time is ");
       uart_print_hex(readtime());
       uart_puts("\r\n");
+      break;
+    case 't':
+      uart_puts("Dummy test done!!!\r\n");
       break;
     default:
       uart_puts("  Try again...\r\n");
