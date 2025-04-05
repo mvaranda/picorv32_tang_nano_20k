@@ -29,12 +29,21 @@ CLK_FREQ = 20000000
 COMMONFLAGS = -march=rv32i2p0 -mabi=ilp32
 CFLAGS = -mno-save-restore $(COMMONFLAGS) -nostartfiles -nostdlib -static -O1
 ASFLAGS = --defsym SRAM_ADDR_WIDTH=$(SRAM_ADDR_WIDTH) $(COMMONFLAGS)
-LIBS = /usr/lib/gcc/riscv64-unknown-elf/10.2.0/rv32i/ilp32/libgcc.a
+#LIBS = /usr/lib/gcc/riscv64-unknown-elf/10.2.0/rv32i/ilp32/libgcc.a
+LIBS = /opt/corev-openhw-gcc-ubuntu2204-20240530/lib/gcc/riscv32-corev-elf/14.1.0/rv32i/ilp32/libgcc.a
 
-CC = riscv64-unknown-elf-gcc
-OBJCOPY = riscv64-unknown-elf-objcopy
-OBJDUMP = riscv64-unknown-elf-objdump
-AS = riscv64-unknown-elf-as
+# CC = riscv64-unknown-elf-gcc
+# OBJCOPY = riscv64-unknown-elf-objcopy
+# OBJDUMP = riscv64-unknown-elf-objdump
+# AS = riscv64-unknown-elf-as
+
+TOOLCHAIN_DIR = /opt/corev-openhw-gcc-ubuntu2204-20240530
+TOOLCHAIN_EXEC_PREFIX = ${TOOLCHAIN_DIR}/bin/riscv32-corev-elf-
+CC = ${TOOLCHAIN_EXEC_PREFIX}gcc
+OBJCOPY = ${TOOLCHAIN_EXEC_PREFIX}objcopy
+OBJDUMP = ${TOOLCHAIN_EXEC_PREFIX}objdump
+AS = ${TOOLCHAIN_EXEC_PREFIX}as
+
 
 all: prog.hex conv_to_init
 
