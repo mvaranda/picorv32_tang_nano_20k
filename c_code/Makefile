@@ -69,7 +69,7 @@ startup.o: startup.s Makefile
 	$(AS) $(ASFLAGS) -o startup.o startup.s
 
 prog.elf: startup.o main.o countdown_timer.o uart.o leds.o ws2812b.o
-	$(CC) $(CFLAGS) -Tlink_cmd.ld -o prog.elf startup.o main.o countdown_timer.o \
+	$(CC) $(CFLAGS) -Tlink_cmd.ld -Xlinker -Map=prog.map -o prog.elf startup.o main.o countdown_timer.o \
           uart.o leds.o ws2812b.o $(LIBS)
 
 prog.bin: prog.elf conv_to_init Makefile
